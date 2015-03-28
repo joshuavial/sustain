@@ -29,7 +29,7 @@ People aren't forced to send money to the libraries they use but they are requir
 * `sustain report` build a simple report showing total financial flow through the input wallet and where the funds have been sent
 * build a rough hack to the MIT license we can get legal feedback on
 
-# Next up
+# Later
 
 * validate username of contributors via signed tweets or github posts/repos to demonstrate they have access to the bitcoin address assigned to them
 
