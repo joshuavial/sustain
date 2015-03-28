@@ -1,0 +1,32 @@
+{
+  "name": "sustain",
+  "version": "0.0.0",
+  "description": "distributed payment system for open source development",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joshuavial/sustain.git"
+  },
+  "keywords": [
+    "payment",
+    "pay",
+    "bitcoin",
+    "sharing",
+    "open source",
+    "sustainable",
+    "funding",
+    "fund"
+  ],
+  "contributors": [
+    "joshuavial",
+    "ahdinosaur"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshuavial/sustain/issues"
+  },
+  "homepage": "https://github.com/joshuavial/sustain"
+}
