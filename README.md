@@ -4,15 +4,16 @@
 Distributed payment system for open source development
 
 # Vision
-Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently people are paid in primarily with reputation and our hypothesis is that a direct financial economy which pays people fairly for the value they contribute to the commons will be more efficient and productive.
+Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently people are paid primarily with reputation and our hypothesis is that a direct financial economy which pays people fairly for the value they contribute to the commons will be more efficient and productive.
 
 # Idea
 We add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple cli tools so we can easily send money to the underpaid giants our commercial applications rest upon.
 
 We build sustain clauses that can be added to popular open source licenses which require any application which includes that package to
-a) implement the same sustain clauses in its license
-b) if app has a http api support a /.sustain.json method which publishes the sustain data of the app
-c) if app has a public website must support a /.sustain.html page which publishes the sustain data of the app
+
+1. implement the same sustain clauses in its license
+1. if app has a http api support a /.sustain.json method which publishes the sustain data of the app
+1. if app has a public website must support a /.sustain.html page which publishes the sustain data of the app
 
 The sustain data would consist of the app wallet address (financial inputs) and the contributor and dependency addresses (outputs) which can be used to audit the financial flow through the app.
 
