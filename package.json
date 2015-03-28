@@ -4,7 +4,7 @@
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
-    "test": "tape test"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,11 @@
   "bugs": {
     "url": "https://github.com/joshuavial/sustain/issues"
   },
-  "homepage": "https://github.com/joshuavial/sustain"
+  "homepage": "https://github.com/joshuavial/sustain",
+  "devDependencies": {
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "bitcoin-regex": "^1.1.0"
+  }
 }
