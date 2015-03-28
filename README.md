@@ -4,21 +4,12 @@
 
 Distributed payment system for open source development
 
-# Vision
-Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently people are paid primarily with reputation and our hypothesis is that a direct financial economy which pays people fairly for the value they contribute to the commons will be more efficient and productive.
-
 # Idea
-We add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple cli tools so we can easily send money to the underpaid giants our commercial applications rest upon.
+Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently open source developers are paid primarily with reputation and our hypothesis is that a direct financial economy which pays people fairly for the value they contribute to the commons will be more efficient and productive.
 
-We build sustain clauses that can be added to popular open source licenses which require any application which includes that package to
+Sustain exists to provide an easy, transparent and decentralized protocol so we can increase the amount of open source funding experiments that are run and make it clear where money goes once it enters the ecosystem.
 
-1. implement the same sustain clauses in its license
-1. if app has a http api support a /.sustain.json method which publishes the sustain data of the app
-1. if app has a public website must support a /.sustain.html page which publishes the sustain data of the app
-
-The sustain data would consist of the app wallet address (financial inputs) and the contributor and dependency addresses (outputs) which can be used to audit the financial flow through the app.
-
-People aren't forced to send money to the libraries they use but they are required to publicly demonstrate the amount of funding they are sending into the open source ecosystem so they can fully participate in the reputation economy.
+The heart of the idea is to add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple cli tools so we can easily send money to the underpaid contributors that commercial applications rest upon.
 
 # Prototype
 
