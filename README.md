@@ -4,12 +4,12 @@
 Distributed payment system for open source development
 
 # Vision
-Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently people are paid in reputation and the models for converting that reputation into cash (corporate sponsorship, digital busking, higher salaries/rates) are sub optimal.
+Open source development contributes substantial value to the economy but often payment for that value does not flow back to the people who create it. Currently people are paid in reputation and the models for converting that reputation into cash (corporate sponsorship, digital busking, higher salaries/rates etc.) are sub optimal.
 
 Our hypothesis is that a direct financial economy which pays people fairly for the value they contribute to the commons will be more efficient and productive than the dominant paradigm of privately held IP in for profit companies.
 
 # Idea
-We add input and output crypto currency addresses to package metadata and some simple cli tools so we can easily send money to the underpaid giants our commercial applications rest upon.
+We add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple cli tools so we can easily send money to the underpaid giants our commercial applications rest upon.
 
 We build sustain clauses that can be added to popular open source licenses which require any application which includes that package to
 a) implement the same sustain clauses in its license
