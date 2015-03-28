@@ -1,6 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/joshuavial/sustain.png?label=ready&title=Ready)](http://waffle.io/joshuavial/sustain)
 
 # Sustain
+
+[![Join the chat at https://gitter.im/joshuavial/sustain](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/joshuavial/sustain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Distributed payment system for open source development
 
 # Vision
