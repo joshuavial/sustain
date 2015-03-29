@@ -5,6 +5,14 @@ var init = require('../lib/init')
 
 process.chdir(__dirname)
 
+test('`init` should error with not enough arguments', function (t) {
+  init(function (err) {
+    t.ok(err, 'error exists')
+    t.equal(err.message, 'Not enough arguments.', 'error message is correct')
+    t.end()
+  })
+})
+
 test('`init <hash>` should update package.json with valid address', function (t) {
   before(0)
 
