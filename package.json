@@ -1,6 +1,6 @@
 {
   "name": "sustain",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {

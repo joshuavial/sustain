@@ -5,6 +5,8 @@ var init = require('../lib/init')
 
 process.chdir(__dirname)
 
+var testAddress = '1JseKCgywLToABagTu85hZfSGLXQ1pa567'
+
 test('`init` should error with not enough arguments', function (t) {
   init(function (err) {
     t.ok(err, 'error exists')
@@ -13,12 +15,18 @@ test('`init` should error with not enough arguments', function (t) {
   })
 })
 
+test('`init` should error if there is not a package.json', function (t) {
+  init(testAddress, function (err) {
+    t.ok(err, 'error exists')
+    t.equal(err.message, 'No package.json in current directory.', 'error message is correct')
+    t.end()
+  })
+})
+
 test('`init <hash>` should update package.json with valid address', function (t) {
   before(0)
 
   t.equal(read().sustain, undefined, "package doesn't have sustain field yet")
-
-  var testAddress = '1JseKCgywLToABagTu85hZfSGLXQ1pa567'
 
   init(testAddress, function (err) {
     t.error(err, 'no error')
