@@ -1,10 +1,13 @@
 {
   "name": "sustain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
     "test": "standard && tape test/*.js | tap-colorize"
+  },
+  "bin": {
+    "sustain": "./bin/cli.js"
   },
   "repository": {
     "type": "git",
