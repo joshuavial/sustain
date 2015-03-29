@@ -14,7 +14,7 @@ The heart of the idea is to add input and output crypto currency addresses (init
 # Prototype
 
 * `sustain init <bitcoin address>` configure package.json with sustain meta data
-* `sustain add <username> <weight> <bitcoin_address>` add a new contributor who will receive payments
+* `sustain add <username> <bitcoin_address>` add a new contributor who will receive payments
 * `sustain build dependencies` query dependencies and add them to sustain data with weight of 0
 * `sustain list` show all contributors and depencies with proportion of funds they will receive
 * `sustain pay` query package wallet for total balance and distribute it to the dependencies and contributors
