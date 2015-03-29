@@ -1,36 +1,36 @@
 var fs = require('fs')
 var test = require('tape')
 var standardParamTests = require('./lib/param-test')
+
+var add = require('../commands/add')
 var testAddress = require('./lib/test-address')
 
-var init = require('../commands/init')
-process.chdir(__dirname) // where is the best place to put this?
+standardParamTests(add, 'add', [], ['username', testAddress])
 
-standardParamTests(init, 'init', [], [testAddress])
-
-test('`init <hash>` should update package.json with valid address', function (t) {
+test('`add <hash>` should update package.json with contributors details', function (t) {
   before(0)
 
   t.equal(read().sustain, undefined, "package doesn't have sustain field yet")
 
-  init(testAddress, function (err) {
+  add('username', testAddress, function (err) {
     t.error(err, 'no error')
 
-    t.deepEqual(read().sustain, {
+    t.deepEqual(read().contributors[0], {
+      name: 'username',
       address: testAddress // random test address
-    }, 'sustain field is correct')
+    }, 'contributor address is correct')
 
     cleanup()
     t.end()
   })
 })
 
-test('`init <hash>` should error with invalid address', function (t) {
+test.skip('`add <hash>` should error with invalid address', function (t) {
   before(0)
 
   t.equal(read().sustain, undefined, "package doesn't have sustain field yet")
 
-  init('asdf', function (err) {
+  add('asdf', function (err) {
     t.ok(err, 'error exists')
 
     t.equal(err.message, 'Given address is invalid.', 'error message is correct')
