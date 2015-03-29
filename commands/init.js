@@ -1,6 +1,6 @@
 var addressRegex = require('bitcoin-regex')({ exact: true })
 var extend = require('xtend')
-var packageLoader = require('./package-loader')
+var packageFs = require('../lib/package-fs')
 
 module.exports = function (address, cb) {
   if (!cb) {
@@ -15,12 +15,11 @@ module.exports = function (address, cb) {
   var cwd = process.cwd()
 
   // read existing package.json
-  packageLoader.read(cwd, function (err, json) {
+  packageFs.read(cwd, function (err, json) {
     if (err) {
       if (err.code === 'ENOENT') {
         return cb(new Error('No package.json in current directory.'))
       }
-
       return cb(err)
     }
 
@@ -29,6 +28,6 @@ module.exports = function (address, cb) {
       address: address
     })
 
-    packageLoader.write(cwd, json, cb)
+    packageFs.write(cwd, json, cb)
   })
 }

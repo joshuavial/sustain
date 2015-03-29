@@ -2,10 +2,10 @@
 
 var cli = require('commist')()
 
-var lib = require('../lib')
+var commands = require('../commands')
 
-Object.keys(lib).forEach(function (cmdName) {
-  cli.register(cmdName, runner(lib[cmdName]))
+Object.keys(commands).forEach(function (cmdName) {
+  cli.register(cmdName, runner(commands[cmdName]))
 })
 
 var result = cli.parse(process.argv.splice(2))

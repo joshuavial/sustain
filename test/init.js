@@ -1,7 +1,7 @@
 var fs = require('fs')
 var test = require('tape')
 
-var init = require('../lib/init')
+var init = require('../commands/init')
 
 process.chdir(__dirname)
 
