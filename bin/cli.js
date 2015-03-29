@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var cli = require('commist')()
-var slice = require('sliced')
 
 var lib = require('../lib')
 
