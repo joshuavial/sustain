@@ -7,7 +7,7 @@ process.chdir(__dirname)
 
 test('`init <hash>` should update package.json with valid address', function (t) {
   before(0)
-  
+
   t.equal(read().sustain, undefined, "package doesn't have sustain field yet")
 
   var testAddress = '1JseKCgywLToABagTu85hZfSGLXQ1pa567'
@@ -26,10 +26,10 @@ test('`init <hash>` should update package.json with valid address', function (t)
 
 test('`init <hash>` should error with invalid address', function (t) {
   before(0)
-  
+
   t.equal(read().sustain, undefined, "package doesn't have sustain field yet")
 
-  init("asdf", function (err) {
+  init('asdf', function (err) {
     t.ok(err, 'error exists')
 
     t.equal(err.message, 'Given address is invalid.', 'error message is correct')
