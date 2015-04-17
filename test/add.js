@@ -8,7 +8,7 @@ var packageFixture = require('./lib/package-fixture-manager')
 standardParamTests(add, 'add', [], ['username', testAddress])
 
 test('`add <hash>` should update package.json with contributors details', function (t) {
-  packageFixture.setup(0)
+  packageFixture.setup('empty')
 
   t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 
@@ -26,7 +26,7 @@ test('`add <hash>` should update package.json with contributors details', functi
 })
 
 test.skip('`add <hash>` should error with invalid address', function (t) {
-  packageFixture.setup(0)
+  packageFixture.setup('empty')
 
   t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 

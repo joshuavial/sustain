@@ -10,7 +10,7 @@ process.chdir(__dirname) // where is the best place to put this?
 standardParamTests(init, 'init', [], [testAddress])
 
 test('`init <hash>` should update package.json with valid address', function (t) {
-  packageFixture.setup(0)
+  packageFixture.setup('empty')
 
   t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 
@@ -27,7 +27,7 @@ test('`init <hash>` should update package.json with valid address', function (t)
 })
 
 test('`init <hash>` should error with invalid address', function (t) {
-  packageFixture.setup(0)
+  packageFixture.setup('empty')
 
   t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 

@@ -6,8 +6,8 @@ module.exports = {
       fs.readFileSync(__dirname + '/../package.json')
     )
   },
-  setup: function (num) {
-    var packageJson = fs.readFileSync(__dirname + '/../fixtures/package.json.' + num)
+  setup: function (label) {
+    var packageJson = fs.readFileSync(__dirname + '/../fixtures/package.json.' + label)
     fs.writeFileSync(__dirname + '/../package.json', packageJson)
   },
   cleanup: function () {
