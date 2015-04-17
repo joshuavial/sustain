@@ -25,12 +25,12 @@ test('`add <hash>` should update package.json with contributors details', functi
   })
 })
 
-test.skip('`add <hash>` should error with invalid address', function (t) {
+test('`add <hash>` should error with invalid address', function (t) {
   packageFixture.setup('empty')
 
   t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 
-  add('asdf', function (err) {
+  add('username', 'asdf', function (err) {
     t.ok(err, 'error exists')
 
     t.equal(err.message, 'Given address is invalid.', 'error message is correct')
