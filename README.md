@@ -19,7 +19,6 @@ The heart of the idea is to add input and output crypto currency addresses (init
 * `sustain list` show all contributors and depencies with proportion of funds they will receive
 * `sustain pay` query package wallet for total balance and distribute it to the dependencies and contributors
 * `sustain report` build a simple report showing total financial flow through the input wallet and where the funds have been sent
-* build a rough hack to the MIT license we can get legal feedback on
 
 # Later
 
