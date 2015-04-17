@@ -4,7 +4,8 @@
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape test/*.js | tap-colorize"
+    "test": "standard && tape test/*.js | tap-dot",
+    "test-doc": "standard && tape test/*.js | tap-colorize"
   },
   "bin": {
     "sustain": "./bin/cli.js"
@@ -35,6 +36,7 @@
   "devDependencies": {
     "standard": "^3.0.0",
     "tap-colorize": "^1.2.0",
+    "tap-dot": "^1.0.0",
     "tape": "^3.5.0"
   },
   "dependencies": {

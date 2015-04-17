@@ -24,3 +24,14 @@ The heart of the idea is to add input and output crypto currency addresses (init
 
 * validate username of contributors via signed tweets or github posts/repos to demonstrate they have access to the bitcoin address assigned to them
 
+# Install
+
+```
+npm install -g sustain
+```
+
+# Test
+```
+npm test
+npm run test-doc
+```
