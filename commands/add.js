@@ -3,26 +3,13 @@ var extend = require('xtend')
 var packageFs = require('../lib/package-fs')
 
 module.exports = function (username, address, cb) {
-  if (!cb) {
-    cb = (address) ? address : username
-    return cb(new Error('Not enough arguments.'))
-  }
-
-  if (!addressRegex.test(address)) {
-    return cb(new Error('Given address is invalid.'))
-  }
+  if (checkError.apply(this, arguments)) { return }
 
   var cwd = process.cwd()
 
   // read existing package.json
   packageFs.read(cwd, function (err, json) {
-    if (err) {
-      if (err.code === 'ENOENT') {
-        return cb(new Error('No package.json in current directory.'))
-      }
-
-      return cb(err)
-    }
+    if (packageFs.checkError(err, cb)) { return }
 
     json.contributors = json.contributors || []
 
@@ -41,4 +28,17 @@ module.exports = function (username, address, cb) {
 
     packageFs.write(cwd, json, cb)
   })
+}
+
+function checkError (username, address, cb) {
+  cb = arguments[arguments.length - 1]
+  if (arguments.length !== 3) {
+    cb(new Error('Not enough arguments.'))
+    return true
+  }
+  if (!addressRegex.test(address)) {
+    cb(new Error('Given address is invalid.'))
+    return true
+  }
+  return false
 }
