@@ -3,7 +3,7 @@ var test = require('tape')
 var standardParamTests = require('./lib/param-test')
 
 var add = require('../commands/add')
-var testAddress = require('./lib/test-address')
+var testAddress = require('./fixtures/test-address')
 
 standardParamTests(add, 'add', [], ['username', testAddress])
 

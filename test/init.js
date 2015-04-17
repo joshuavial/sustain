@@ -1,7 +1,7 @@
 var fs = require('fs')
 var test = require('tape')
 var standardParamTests = require('./lib/param-test')
-var testAddress = require('./lib/test-address')
+var testAddress = require('./fixtures/test-address')
 
 var init = require('../commands/init')
 process.chdir(__dirname) // where is the best place to put this?
