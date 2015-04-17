@@ -2,20 +2,20 @@ var test = require('tape')
 var standardParamTests = require('./lib/param-test')
 
 var add = require('../commands/add')
-var testAddress = require('./fixtures/test-address')
+var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
 
-standardParamTests(add, 'add', [], ['username', testAddress])
+standardParamTests(add, 'add', [], ['username', validAddress])
 
 test('`add <hash>` should update package.json with contributors details', function (t) {
   packageFixture.setup('empty')
 
-  add('username', testAddress, function (err) {
+  add('username', validAddress, function (err) {
     t.error(err, 'no error')
 
     t.deepEqual(packageFixture.read().contributors[0], {
       name: 'username',
-      address: testAddress // random test address
+      address: validAddress // random test address
     }, 'contributor address is correct')
 
     packageFixture.cleanup()

@@ -2,21 +2,21 @@ var test = require('tape')
 var standardParamTests = require('./lib/param-test')
 var packageFixture = require('./lib/package-fixture-manager')
 
-var testAddress = require('./fixtures/test-address')
+var validAddress = require('./fixtures/test-address')
 
 var init = require('../commands/init')
 process.chdir(__dirname) // where is the best place to put this?
 
-standardParamTests(init, 'init', [], [testAddress])
+standardParamTests(init, 'init', [], [validAddress])
 
 test('`init <hash>` should update package.json with valid address', function (t) {
   packageFixture.setup('empty')
 
-  init(testAddress, function (err) {
+  init(validAddress, function (err) {
     t.error(err, 'no error')
 
     t.deepEqual(packageFixture.read().sustain, {
-      address: testAddress // random test address
+      address: validAddress // random test address
     }, 'sustain field is correct')
 
     packageFixture.cleanup()
