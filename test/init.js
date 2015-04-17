@@ -12,8 +12,6 @@ standardParamTests(init, 'init', [], [testAddress])
 test('`init <hash>` should update package.json with valid address', function (t) {
   packageFixture.setup('empty')
 
-  t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
-
   init(testAddress, function (err) {
     t.error(err, 'no error')
 
@@ -28,8 +26,6 @@ test('`init <hash>` should update package.json with valid address', function (t)
 
 test('`init <hash>` should error with invalid address', function (t) {
   packageFixture.setup('empty')
-
-  t.equal(packageFixture.read().sustain, undefined, "package doesn't have sustain field yet")
 
   init('asdf', function (err) {
     t.ok(err, 'error exists')
