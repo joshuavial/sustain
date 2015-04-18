@@ -1,5 +1,4 @@
 var addressRegex = require('bitcoin-regex')({ exact: true })
-var extend = require('xtend')
 var packageFs = require('../lib/package-fs')
 
 module.exports = function (username, address, cb) {
@@ -10,21 +9,17 @@ module.exports = function (username, address, cb) {
   // read existing package.json
   packageFs.read(cwd, function (err, json) {
     if (packageFs.checkError(err, cb)) { return }
+    if (packageFs.noSustainData(json, cb)) { return }
 
-    json.contributors = json.contributors || []
+    json.sustain.contributors = json.sustain.contributors || []
 
-    if (json.contributors.indexOf(username) >= 0) {
+    if (json.sustain.contributors.indexOf(username) >= 0) {
     } else {
-      json.contributors.push({
+      json.sustain.contributors.push({
         name: username,
         address: address
       })
     }
-
-    // write address to sustain
-    json.sustain = extend(json.sustain || {}, {
-      address: address
-    })
 
     packageFs.write(cwd, json, cb)
   })

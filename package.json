@@ -1,6 +1,6 @@
 {
   "name": "sustain",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
@@ -44,5 +44,8 @@
     "commist": "^1.0.0",
     "sorted-object": "^1.0.0",
     "xtend": "^4.0.0"
+  },
+  "sustain": {
+    "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567"
   }
 }

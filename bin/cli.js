@@ -19,7 +19,8 @@ function usage () {
     'Usage: sustain [command] [args ...]',
     '',
     '  Commands:',
-    '  - init [bitcoin address]'
+    '  - init [bitcoin address]',
+    '  - add [username] [bitcoin address]'
   ].join('\n')
 }
 

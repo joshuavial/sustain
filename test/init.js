@@ -28,7 +28,7 @@ test('`init <hash>` should error with invalid address', function (t) {
   packageFixture.setup('empty')
 
   init('asdf', function (err) {
-    t.ok(err, 'error exists')
+    t.ok(err, 'invalid bitcoin address error exists')
 
     t.equal(err.message, 'Given address is invalid.', 'error message is correct')
 
