@@ -1,7 +1,6 @@
 var test = require('tape')
 
 module.exports = function (command, name, invalidArgs, validArgs) {
-  console.log(command.toString())
   test('`' + name + '` should error with not enough arguments', function (t) {
     invalidArgs.push(function (err) {
       t.ok(err, 'not enough args error exists')

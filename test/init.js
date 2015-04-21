@@ -5,6 +5,7 @@ var packageFixture = require('./lib/package-fixture-manager')
 var validAddress = require('./fixtures/test-address')
 
 var init = require('../commands/init')
+process.chdir(__dirname)
 
 standardParamTests(init, 'init', [], [validAddress])
 

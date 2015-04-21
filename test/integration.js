@@ -3,7 +3,7 @@ var test = require('tape')
 var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
 
-process.chdir(__dirname) // where is the best place to put this?
+process.chdir(__dirname)
 
 test('init', function (t) {
   packageFixture.setup('empty')

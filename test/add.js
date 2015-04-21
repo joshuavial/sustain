@@ -1,3 +1,4 @@
+console.log(process.env.PWD)
 var test = require('tape')
 var standardParamTests = require('./lib/param-test')
 
@@ -6,6 +7,7 @@ var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
 
 standardParamTests(add, 'add', [], ['username', validAddress])
+process.chdir(__dirname)
 
 test('`add <username> <hash>` displays error if no sustain field in package.json', function (t) {
   packageFixture.setup('empty')
