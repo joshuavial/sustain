@@ -4,7 +4,7 @@
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape $(find $(pwd)/test -name '*.js' -maxdepth 1) | tap-dot",
+    "test": "standard && tape $(ls $(pwd)/test/*.js) | tap-dot",
     "test-doc": "standard && tape test/*.js | tap-colorize --pass '#009900'",
     "vim-spec": "standard && tape $TEST | tap-colorize --pass '#009900'"
   },
