@@ -9,7 +9,7 @@ Open source development contributes substantial value to the economy but often p
 
 Sustain exists to provide an easy, transparent and decentralized protocol so we can increase the amount of open source funding experiments that are run and make it clear where money goes once it enters the ecosystem.
 
-The heart of the idea is to add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple cli tools so we can easily send money to the underpaid contributors that commercial applications rest upon.
+The heart of the idea is to add input and output crypto currency addresses (initially bitcoin) to package metadata and some simple command line tools so we can easily send money to the underpaid contributors that commercial applications rest upon.
 
 # Prototype
 
