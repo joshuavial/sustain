@@ -27,17 +27,11 @@ describe('add', function () {
     add('username', validAddress, function () {
       expect(packageFixture.read().sustain.contributors[0]).to.deep.equal({
         name: 'username',
-        address: validAddress // random test address
+        address: validAddress,
+        weight: 1
       })
       done()
     })
   })
 
-  it('returns error if email address is invalid', function (done) {
-    packageFixture.setup('basic')
-    add('username', 'asdf', function (err) {
-      expect(err.message).to.equal('Given address is invalid.')
-      done()
-    })
-  })
 })

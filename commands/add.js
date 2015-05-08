@@ -17,7 +17,8 @@ module.exports = function (username, address, cb) {
     } else {
       json.sustain.contributors.push({
         name: username,
-        address: address
+        address: address,
+        weight: 1
       })
     }
 
