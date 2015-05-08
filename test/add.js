@@ -1,49 +1,43 @@
-console.log(process.env.PWD)
-var test = require('tape')
+/* global describe, it, afterEach */
+var expect = require('chai').expect
 var standardParamTests = require('./lib/param-test')
 
-var add = require('../commands/add')
 var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
+
+var add = require('../commands/add')
 
 standardParamTests(add, 'add', [], ['username', validAddress])
 process.chdir(__dirname)
 
-test('`add <username> <hash>` displays error if no sustain field in package.json', function (t) {
-  packageFixture.setup('empty')
-  add('username', validAddress, function (err) {
-    t.ok(err, 'error message exists')
-    t.equal(err.message, 'No sustain data in package.json.', 'error message is correct')
+describe('add', function () {
+  afterEach(function () {
     packageFixture.cleanup()
-    t.end()
   })
-})
+  it('displays error if no sustain field in package.json', function (done) {
+    packageFixture.setup('empty')
+    add('username', validAddress, function (err) {
+      expect(err.message).to.equal('No sustain data in package.json.')
+      done()
+    })
 
-test('`add <username> <hash>` should update package.json with contributors details', function (t) {
-  packageFixture.setup('basic')
-
-  add('username', validAddress, function (err) {
-    t.error(err, 'no error')
-
-    t.deepEqual(packageFixture.read().sustain.contributors[0], {
-      name: 'username',
-      address: validAddress // random test address
-    }, 'contributor address is correct')
-
-    packageFixture.cleanup()
-    t.end()
   })
-})
+  it('updates package.json with contributors details', function (done) {
+    packageFixture.setup('basic')
+    add('username', validAddress, function () {
+      expect(packageFixture.read().sustain.contributors[0]).to.deep.equal({
+        name: 'username',
+        address: validAddress // random test address
+      })
+      done()
+    })
+  })
 
-test('`add <hash>` should error with invalid address', function (t) {
-  packageFixture.setup('basic')
-
-  add('username', 'asdf', function (err) {
-    t.ok(err, 'invalid address error exists')
-
-    t.equal(err.message, 'Given address is invalid.', 'error message is correct')
-
-    packageFixture.cleanup()
-    t.end()
+  it('returns error if email address is invalid', function (done) {
+    packageFixture.setup('basic')
+    add('username', 'asdf', function (err) {
+      expect(err.message).to.equal('Given address is invalid.')
+      done()
+    })
   })
 })

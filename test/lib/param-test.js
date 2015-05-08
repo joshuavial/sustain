@@ -1,21 +1,21 @@
-var test = require('tape')
+/* global describe, it */
+var expect = require('chai').expect
 
 module.exports = function (command, name, invalidArgs, validArgs) {
-  test('`' + name + '` should error with not enough arguments', function (t) {
-    invalidArgs.push(function (err) {
-      t.ok(err, 'not enough args error exists')
-      t.equal(err.message, 'Not enough arguments.', 'error message is correct')
-      t.end()
+  describe(name + ' param-test', function () {
+    it('errors with not enough aarguments', function (done) {
+      invalidArgs.push(function (err) {
+        expect(err.message).to.equal('Not enough arguments.')
+        done()
+      })
+      command.apply(this, invalidArgs)
     })
-    command.apply(this, invalidArgs)
-  })
-
-  test('`' + name + '` should error if there is not a package.json', function (t) {
-    validArgs.push(function (err) {
-      t.ok(err, 'no package.json error exists')
-      t.equal(err.message, 'No package.json in current directory.', 'error message is correct')
-      t.end()
+    it('errors if there is no package.json', function (done) {
+      validArgs.push(function (err) {
+        expect(err.message).to.equal('No package.json in current directory.')
+        done()
+      })
+      command.apply(this, validArgs)
     })
-    command.apply(this, validArgs)
   })
 }

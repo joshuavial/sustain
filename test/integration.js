@@ -1,18 +1,21 @@
+/* global describe, it, beforeEach, afterEach */
 var exec = require('child_process').exec
-var test = require('tape')
+var expect = require('chai').expect
 var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
 
 process.chdir(__dirname)
 
-test('init', function (t) {
-  packageFixture.setup('empty')
-  exec('../bin/cli.js init ' + validAddress, function () {
-    t.deepEqual(packageFixture.read().sustain, {
-      address: validAddress // random test address
-    }, 'sustain field is correct')
+describe('init', function () {
+  beforeEach(function () { packageFixture.setup('empty')})
+  afterEach(function () { packageFixture.cleanup() })
 
-    packageFixture.cleanup()
-    t.end()
+  it('creates the sustain field correctly', function (done) {
+    exec('../bin/cli.js init ' + validAddress, function () {
+      expect(packageFixture.read().sustain).to.deep.equal({
+        address: validAddress // random test address
+      })
+      done()
+    })
   })
 })

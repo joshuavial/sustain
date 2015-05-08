@@ -4,9 +4,8 @@
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape $(ls $(pwd)/test/*.js) | tap-dot",
-    "test-doc": "standard && tape test/*.js | tap-colorize --pass '#009900'",
-    "vim-spec": "standard && tape $TEST | tap-colorize --pass '#009900'"
+    "test": "standard && mocha $(ls $(pwd)/test/*.js)",
+    "vim-spec": "standard && mocha $TEST"
   },
   "bin": {
     "sustain": "./bin/cli.js"
@@ -35,10 +34,11 @@
   },
   "homepage": "https://github.com/joshuavial/sustain",
   "devDependencies": {
-    "standard": "^3.0.0",
-    "tap-colorize": "^1.2.0",
-    "tap-dot": "^1.0.0",
-    "tape": "^3.5.0"
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0",
+    "standard": "^3.0.0"
   },
   "dependencies": {
     "bitcoin-regex": "^1.1.0",
