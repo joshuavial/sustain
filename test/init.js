@@ -1,38 +1,31 @@
-var test = require('tape')
+/* global describe, it, afterEach, beforeEach */
+var expect = require('chai').expect
 var standardParamTests = require('./lib/param-test')
-var packageFixture = require('./lib/package-fixture-manager')
 
 var validAddress = require('./fixtures/test-address')
+var packageFixture = require('./lib/package-fixture-manager')
 
 var init = require('../commands/init')
-process.chdir(__dirname)
 
 standardParamTests(init, 'init', [], [validAddress])
+process.chdir(__dirname)
 
-test('`init <hash>` should update package.json with valid address', function (t) {
-  packageFixture.setup('empty')
+describe('init', function () {
+  beforeEach(function () { packageFixture.setup('empty')})
+  afterEach(function () { packageFixture.cleanup() })
 
-  init(validAddress, function (err) {
-    t.error(err, 'no error')
-
-    t.deepEqual(packageFixture.read().sustain, {
-      address: validAddress // random test address
-    }, 'sustain field is correct')
-
-    packageFixture.cleanup()
-    t.end()
+  it('updates package.json with valid address', function (done) {
+    init(validAddress, function () {
+      expect(packageFixture.read().sustain).to.deep.equal({
+        address: validAddress // random test address
+      })
+      done()
+    })
   })
-})
-
-test('`init <hash>` should error with invalid address', function (t) {
-  packageFixture.setup('empty')
-
-  init('asdf', function (err) {
-    t.ok(err, 'invalid bitcoin address error exists')
-
-    t.equal(err.message, 'Given address is invalid.', 'error message is correct')
-
-    packageFixture.cleanup()
-    t.end()
+  it('errors when bitcoin address is invalid', function (done) {
+    init('asdf', function (err) {
+      expect(err.message).to.equal('Given address is invalid.')
+      done()
+    })
   })
 })
