@@ -45,14 +45,5 @@
     "commist": "^1.0.0",
     "sorted-object": "^1.0.0",
     "xtend": "^4.0.0"
-  },
-  "sustain": {
-    "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567",
-    "contributors": [
-      {
-        "name": "username",
-        "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567"
-      }
-    ]
   }
 }
