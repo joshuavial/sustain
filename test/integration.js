@@ -6,7 +6,7 @@ var packageFixture = require('./lib/package-fixture-manager')
 
 process.chdir(__dirname)
 
-describe('init', function () {
+describe('init [integration]', function () {
   beforeEach(function () { packageFixture.setup('empty')})
   afterEach(function () { packageFixture.cleanup() })
 

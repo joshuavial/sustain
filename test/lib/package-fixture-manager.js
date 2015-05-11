@@ -11,6 +11,8 @@ module.exports = {
     fs.writeFileSync(__dirname + '/../package.json', packageJson)
   },
   cleanup: function () {
-    fs.unlinkSync(__dirname + '/../package.json')
+    try {
+      fs.unlinkSync(__dirname + '/../package.json')
+    } catch (err) { }
   }
 }
