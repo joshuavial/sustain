@@ -15,7 +15,7 @@ CommandTester.prototype.handlesInvalidArgs = function (invalidArgs) {
       expect(err.message).to.equal('Not enough arguments.')
       done()
     }])
-    tester.command.apply(tester, fullInvalidArgs)
+    tester.command.call.apply(tester.command, fullInvalidArgs)
   })
 }
 CommandTester.prototype.requiresPackageFile = function () {
@@ -26,7 +26,7 @@ CommandTester.prototype.requiresPackageFile = function () {
       expect(err.message).to.equal('No package.json in current directory.')
       done()
     }])
-    tester.command.apply(tester, validArgs)
+    tester.command.call.apply(tester.command, validArgs)
   })
 }
 CommandTester.prototype.requireSustainField = function () {
@@ -37,7 +37,7 @@ CommandTester.prototype.requireSustainField = function () {
       expect(err.message).to.equal('No sustain data in package.json.')
       done()
     }])
-    tester.command.apply(tester, validArgs)
+    tester.command.call.apply(tester.command, validArgs)
   })
 }
 

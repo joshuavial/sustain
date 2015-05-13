@@ -1,20 +1,28 @@
 var packageFs = require('../lib/package-fs')
 
-module.exports = function (cb) {
-  if (checkError.apply(this, arguments)) { return }
+var UpdateCommand = function () {
 
-  var cwd = process.cwd()
-
-  // read existing package.json
-  packageFs.read(cwd, function (err, json) {
-    if (packageFs.checkError(err, cb)) { return }
-    if (packageFs.noSustainData(json, cb)) { return }
-
-    json.sustain.dependencies = json.sustain.dependencies || []
-
-    packageFs.write(cwd, json, cb)
-  })
 }
+
+UpdateCommand.prototype = {
+  call: function (cb) {
+    if (checkError.apply(this, arguments)) { return }
+
+    var cwd = process.cwd()
+
+    // read existing package.json
+    packageFs.read(cwd, function (err, json) {
+      if (packageFs.checkError(err, cb)) { return }
+      if (packageFs.noSustainData(json, cb)) { return }
+
+      json.sustain.dependencies = json.sustain.dependencies || []
+
+      packageFs.write(cwd, json, cb)
+    })
+  }
+}
+
+module.exports = UpdateCommand
 
 function checkError (cb) {
   cb = arguments[arguments.length - 1]

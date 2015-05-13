@@ -1,7 +1,7 @@
 /* global describe, it, afterEach */
 var expect = require('chai').expect
 
-var CommandTester = require('./lib/shared')
+var CommandTester = require('./lib/command-tester')
 var validAddress = require('./fixtures/test-address')
 var packageFixture = require('./lib/package-fixture-manager')
 
