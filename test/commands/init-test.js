@@ -1,14 +1,14 @@
 /* global describe, it, afterEach, beforeEach */
 var expect = require('chai').expect
 
-var CommandTester = require('./lib/command-tester')
-var validAddress = require('./fixtures/test-address')
-var packageFixture = require('./lib/package-fixture-manager')
+var CommandTester = require('../lib/command-tester')
+var validAddress = require('../fixtures/test-address')
+var packageFixture = require('../lib/package-fixture-manager')
 
-var InitCommand = require('../commands/init')
+var InitCommand = require('../../commands/init')
 var sharedTester = new CommandTester(new InitCommand(), [validAddress])
 
-process.chdir(__dirname)
+process.chdir(__dirname + '/..')
 
 describe('init', function () {
   beforeEach(function () { packageFixture.setup('empty')})

@@ -4,7 +4,7 @@
   "description": "distributed payment system for open source development",
   "main": "index.js",
   "scripts": {
-    "test": "standard && mocha $(ls $(pwd)/test/*.js)",
+    "test": "standard && mocha $(ls $(pwd)/test/**/*-test.js)",
     "vim-spec": "standard && mocha $TEST"
   },
   "bin": {

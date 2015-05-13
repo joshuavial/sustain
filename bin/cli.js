@@ -19,12 +19,13 @@ function usage () {
     'Usage: sustain [command] [args ...]',
     '',
     '  Commands:',
+    '  - add [username] [bitcoin address]',
     '  - init [bitcoin address]',
-    '  - add [username] [bitcoin address]'
+    '  - update '
   ].join('\n')
 }
 
-function runner (cmd) {
+function runner (Cmd) {
   return function (args) {
     args.push(function (err) {
       if (err) {
@@ -33,6 +34,6 @@ function runner (cmd) {
         console.log(usage())
       }
     })
-    cmd.apply(this, args)
+    new Cmd().call.apply(this, args)
   }
 }
