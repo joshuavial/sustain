@@ -18,7 +18,10 @@ describe('update', function () {
 
   it('loads installed packages', function () {
     packageFixture.setup('basic')
-    expect(true).to.equal(true)
+    expect(packageFixture.read().sustain.dependencies[0]).to.deep.equal({
+      package: 'bitcoin-regex',
+      version: '1.1.0'
+    })
   })
 
 })
