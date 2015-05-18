@@ -33,5 +33,4 @@ npm install -g sustain
 # Test
 ```
 npm test
-npm run test-doc
 ```
