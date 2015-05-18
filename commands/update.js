@@ -1,8 +1,7 @@
 var packageFs = require('../lib/package-fs')
+var exec = require('child_process').exec
 
-var UpdateCommand = function () {
-
-}
+var UpdateCommand = function () { }
 
 UpdateCommand.prototype = {
   call: function (cb) {
@@ -10,14 +9,45 @@ UpdateCommand.prototype = {
 
     var cwd = process.cwd()
 
+    var command = this
     // read existing package.json
-    packageFs.read(cwd, function (err, json) {
+    packageFs.read.apply(this, ['.', function (err, json) {
       if (packageFs.checkError(err, cb)) { return }
       if (packageFs.noSustainData(json, cb)) { return }
 
-      json.sustain.dependencies = json.sustain.dependencies || []
-
-      packageFs.write(cwd, json, cb)
+      command.dependencies(function (err, dependencies) {
+        if (err) { return cb(err)}
+        json.sustain.dependencies = json.sustain.dependencies || []
+        json = command.buildDependencyJSON(json, dependencies)
+        packageFs.write(cwd, json, cb)
+      })
+    }])
+  },
+  buildDependencyJSON: function (json, dependencies) {
+    dependencies.forEach(function (dep) {
+      var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
+      if (parts[0] !== '') {
+        json.sustain.dependencies.push({
+          package: parts[0],
+          version: parts[1],
+          weight: 1
+        })
+      }
+    })
+    return json
+  },
+  dependencies: function (cb) {
+    this.readDependencies(function (err, contents) {
+      if (err) {return cb(err)}
+      var deps = contents.split('\n')
+      deps.shift()
+      cb(null, deps)
+    })
+  },
+  readDependencies: function (cb) {
+    exec('npm list --depth 0', function (err, stdout, stderr) {
+      if (err) {return cb(err)}
+      cb(null, stdout)
     })
   }
 }

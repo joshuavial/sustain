@@ -34,6 +34,7 @@ function runner (Cmd) {
         console.log(usage())
       }
     })
-    new Cmd().call.apply(this, args)
+    var cmd = new Cmd()
+    cmd.call.apply(cmd, args)
   }
 }
