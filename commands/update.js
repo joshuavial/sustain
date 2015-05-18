@@ -17,7 +17,7 @@ UpdateCommand.prototype = {
 
       command.dependencies(function (err, dependencies) {
         if (err) { return cb(err)}
-        json.sustain.dependencies = json.sustain.dependencies || []
+        json.sustain.dependencies = json.sustain.dependencies || {}
         json = command.buildDependencyJSON(json, dependencies)
         packageFs.write(cwd, json, cb)
       })
@@ -27,11 +27,10 @@ UpdateCommand.prototype = {
     dependencies.forEach(function (dep) {
       var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
       if (parts[0] !== '') {
-        json.sustain.dependencies.push({
-          package: parts[0],
+        json.sustain.dependencies[parts[0]] = {
           version: parts[1],
           weight: 1
-        })
+        }
       }
     })
     return json

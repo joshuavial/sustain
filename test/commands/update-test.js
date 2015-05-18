@@ -25,8 +25,7 @@ describe('update', function () {
   it('loads installed packages', function (done) {
     packageFixture.setup('basic')
     this.updateCommand.call(function () {
-      expect(packageFixture.read().sustain.dependencies[0]).to.deep.equal({
-        package: 'bitcoin-regex',
+      expect(packageFixture.read().sustain.dependencies['bitcoin-regex']).to.deep.equal({
         version: '1.1.0',
         weight: 1
       })
@@ -37,7 +36,7 @@ describe('update', function () {
   it('does not load empty strings', function (done) {
     packageFixture.setup('basic')
     this.updateCommand.call(function () {
-      expect(packageFixture.read().sustain.dependencies.length).to.equal(9)
+      expect(Object.keys(packageFixture.read().sustain.dependencies).length).to.equal(9)
       done()
     })
   })
