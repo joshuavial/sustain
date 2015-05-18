@@ -29,7 +29,7 @@ UpdateCommand.prototype = {
       if (parts[0] !== '') {
         json.sustain.dependencies[parts[0]] = {
           version: parts[1],
-          weight: 1
+          weight: weightFor(parts[0], json.sustain.dependencies)
         }
       }
     })
@@ -60,4 +60,11 @@ function checkError (cb) {
     return true
   }
   return false
+}
+
+function weightFor (packageName, dependencies) {
+  if (dependencies[packageName] && dependencies[packageName].weight) {
+    return dependencies[packageName].weight
+  }
+  return 1
 }

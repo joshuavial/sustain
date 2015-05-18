@@ -1,0 +1,11 @@
+{
+  "sustain": {
+    "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567",
+    "dependencies": {
+      "bitcoin-regex": {
+        "version": "1.0.0",
+        "weight": 12
+      }
+    }
+  }
+}

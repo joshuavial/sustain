@@ -33,6 +33,17 @@ describe('update', function () {
     })
   })
 
+  it('does not overwrite weight', function (done) {
+    packageFixture.setup('weights')
+    this.updateCommand.call(function () {
+      expect(packageFixture.read().sustain.dependencies['bitcoin-regex']).to.deep.equal({
+        version: '1.1.0',
+        weight: 12
+      })
+      done()
+    })
+  })
+
   it('does not load empty strings', function (done) {
     packageFixture.setup('basic')
     this.updateCommand.call(function () {
