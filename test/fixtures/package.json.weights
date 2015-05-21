@@ -1,6 +1,12 @@
 {
   "sustain": {
     "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567",
+    "contributors": {
+      "username": {
+        "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567",
+        "weight": 11
+      }
+    },
     "dependencies": {
       "bitcoin-regex": {
         "version": "1.0.0",

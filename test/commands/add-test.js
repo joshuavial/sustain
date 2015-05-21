@@ -21,10 +21,20 @@ describe('add', function () {
   it('updates package.json with contributors details', function (done) {
     packageFixture.setup('basic')
     new AddCommand().call('username', validAddress, function () {
-      expect(packageFixture.read().sustain.contributors[0]).to.deep.equal({
-        name: 'username',
-        address: validAddress,
-        weight: 1
+      expect(packageFixture.read().sustain.contributors['username']).to.deep.equal({
+        'address': validAddress,
+        'weight': 1
+      })
+      done()
+    })
+  })
+
+  it('updates an existing user', function (done) {
+    packageFixture.setup('weights')
+    new AddCommand().call('username', '1JseKCgywLToABagTu85hZfSGLXQ1pa568', function () {
+      expect(packageFixture.read().sustain.contributors['username']).to.deep.equal({
+        'address': '1JseKCgywLToABagTu85hZfSGLXQ1pa568',
+        'weight': 11
       })
       done()
     })

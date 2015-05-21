@@ -15,14 +15,14 @@ AddCommand.prototype = {
       if (packageFs.checkError(err, cb)) { return }
       if (packageFs.noSustainData(json, cb)) { return }
 
-      json.sustain.contributors = json.sustain.contributors || []
+      json.sustain.contributors = json.sustain.contributors || {}
 
-      if (json.sustain.contributors.indexOf(username) < 0) {
-        json.sustain.contributors.push({
-          name: username,
-          address: address,
-          weight: 1
-        })
+      if (!json.sustain.contributors[username]) {
+        json.sustain.contributors[username] = {}
+      }
+      json.sustain.contributors[username]['address'] = address
+      if (!json.sustain.contributors[username].weight) {
+        json.sustain.contributors[username].weight = 1
       }
 
       packageFs.write(cwd, json, cb)
