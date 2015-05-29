@@ -1,6 +1,5 @@
 var packageFs = require('../lib/package-fs')
-var exec = require('child_process').exec
-
+var readDependencies = require('../lib/read-dependencies')
 var UpdateCommand = function () { }
 
 UpdateCommand.prototype = {
@@ -36,17 +35,11 @@ UpdateCommand.prototype = {
     return json
   },
   dependencies: function (cb) {
-    this.readDependencies(function (err, contents) {
+    readDependencies(function (err, contents) {
       if (err) {return cb(err)}
       var deps = contents.split('\n')
       deps.shift()
       cb(null, deps)
-    })
-  },
-  readDependencies: function (cb) {
-    exec('npm list --depth 0', function (err, stdout, stderr) {
-      if (err) {return cb(err)}
-      cb(null, stdout)
     })
   }
 }

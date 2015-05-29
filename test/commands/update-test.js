@@ -1,12 +1,14 @@
 /* global describe, beforeEach, afterEach, it */
 var expect = require('chai').expect
-var fs = require('fs')
-var Path = require('path')
+var proxyquire = require('proxyquire')
 
 var CommandTester = require('../lib/command-tester')
 var packageFixture = require('../lib/package-fixture-manager')
+var readDependenciesMock = require('../lib/read-dependencies-mock')
 
-var UpdateCommand = require('../../commands/update')
+var UpdateCommand = proxyquire('../../commands/update', {
+  '../lib/read-dependencies': readDependenciesMock
+})
 var sharedTester = new CommandTester(new UpdateCommand(), [])
 
 process.chdir(__dirname + '/..')
@@ -14,7 +16,6 @@ process.chdir(__dirname + '/..')
 describe('update', function () {
   beforeEach(function () {
     this.updateCommand = new UpdateCommand()
-    stubReadDependencies(this.updateCommand)
   })
   afterEach(function () {
     packageFixture.cleanup()
@@ -53,16 +54,3 @@ describe('update', function () {
   })
 
 })
-
-function stubReadDependencies (command) {
-  command.readDependencies = function (cb) {
-    fs.readFile(
-      Path.join(__dirname, '../fixtures/npm-ls.txt'),
-      'utf8',
-      function (err, contents) {
-        if (err) {return cb(err)}
-        cb(null, contents)
-      }
-    )
-  }
-}
