@@ -8,39 +8,18 @@ UpdateCommand.prototype = {
 
     var cwd = process.cwd()
 
-    var command = this
     // read existing package.json
     packageFs.read.apply(this, ['.', function (err, json) {
       if (packageFs.checkError(err, cb)) { return }
       if (packageFs.noSustainData(json, cb)) { return }
 
-      command.dependencies(function (err, dependencies) {
+      dependencies(function (err, dependencies) {
         if (err) { return cb(err)}
         json.sustain.dependencies = json.sustain.dependencies || {}
-        json = command.buildDependencyJSON(json, dependencies)
+        json = buildDependencyJSON(json, dependencies)
         packageFs.write(cwd, json, cb)
       })
     }])
-  },
-  buildDependencyJSON: function (json, dependencies) {
-    dependencies.forEach(function (dep) {
-      var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
-      if (parts[0] !== '') {
-        json.sustain.dependencies[parts[0]] = {
-          version: parts[1],
-          weight: weightFor(parts[0], json.sustain.dependencies)
-        }
-      }
-    })
-    return json
-  },
-  dependencies: function (cb) {
-    readDependencies(function (err, contents) {
-      if (err) {return cb(err)}
-      var deps = contents.split('\n')
-      deps.shift()
-      cb(null, deps)
-    })
   }
 }
 
@@ -53,6 +32,27 @@ function checkError (cb) {
     return true
   }
   return false
+}
+
+function buildDependencyJSON (json, dependencies) {
+  dependencies.forEach(function (dep) {
+    var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
+    if (parts[0] !== '') {
+      json.sustain.dependencies[parts[0]] = {
+        version: parts[1],
+        weight: weightFor(parts[0], json.sustain.dependencies)
+      }
+    }
+  })
+  return json
+}
+function dependencies (cb) {
+  readDependencies(function (err, contents) {
+    if (err) {return cb(err)}
+    var deps = contents.split('\n')
+    deps.shift()
+    cb(null, deps)
+  })
 }
 
 function weightFor (packageName, dependencies) {
