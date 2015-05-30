@@ -25,7 +25,7 @@ function usage () {
   ].join('\n')
 }
 
-function runner (Cmd) {
+function runner (cmd) {
   return function (args) {
     args.push(function (err) {
       if (err) {
@@ -34,7 +34,6 @@ function runner (Cmd) {
         console.log(usage())
       }
     })
-    var cmd = new Cmd()
-    cmd.call.apply(cmd, args)
+    cmd.apply(cmd, args)
   }
 }
