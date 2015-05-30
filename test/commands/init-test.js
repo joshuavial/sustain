@@ -14,7 +14,6 @@ describe('init', function () {
   beforeEach(function () { sustainFixture.setup('empty')})
   afterEach(function () { sustainFixture.cleanup() })
 
-  sharedTester.requiresSustainFile()
   sharedTester.handlesInvalidArgs([])
 
   it('errors when bitcoin address is invalid', function (done) {

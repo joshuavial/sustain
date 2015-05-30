@@ -11,6 +11,7 @@ Object.keys(commands).forEach(function (cmdName) {
 var result = cli.parse(process.argv.splice(2))
 
 if (result) {
+  console.log(result)
   console.log(usage())
 }
 

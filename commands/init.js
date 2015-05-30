@@ -8,9 +8,9 @@ module.exports = function (address, cb) {
   var cwd = process.cwd()
 
   sustainFs.read(cwd, function (err, json) {
-    if (sustainFs.checkError(err, cb)) { return }
+    if (err) { json = {} }
 
-    json = extend(json || {}, {
+    json = extend(json, {
       address: address
     })
 
