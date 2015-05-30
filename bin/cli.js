@@ -28,11 +28,14 @@ function usage () {
 
 function runner (cmd) {
   return function (args) {
-    args.push(function (err) {
+    args.push(function (err, output) {
       if (err) {
         console.error(err.message)
         console.log()
         console.log(usage())
+      }
+      if (output) {
+        console.log(output)
       }
     })
     cmd.apply(cmd, args)

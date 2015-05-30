@@ -33,6 +33,16 @@ describe('PayeeCalculator', function () {
     expect(this.calculator.payees[0].proportion).to.equal(0.6)
     expect(this.calculator.payees[1].proportion).to.equal(0.4)
   })
+  it('rounds the proportion to two decimal places', function () {
+    var calculator = new PayeeCalculator({
+      contributors: {
+        '1': {weight: 1},
+        '2': {weight: 2}
+      }
+    })
+    expect(calculator.payees[0].proportion).to.equal(0.33)
+    expect(calculator.payees[1].proportion).to.equal(0.67)
+  })
   describe('dependencies without a sustain address', function () {
     it('are not included in payees', function () {
       expect(this.calculator.payees.length).to.equal(2)
