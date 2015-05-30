@@ -5,8 +5,8 @@ var CommandTester = require('../lib/command-tester')
 var validAddress = require('../fixtures/test-address')
 var packageFixture = require('../lib/package-fixture-manager')
 
-var AddCommand = require('../../commands/add')
-var commandTester = new CommandTester(new AddCommand(), ['username', validAddress])
+var addCommand = require('../../commands/add')
+var commandTester = new CommandTester(addCommand, ['username', validAddress])
 
 process.chdir(__dirname + '/..')
 
@@ -20,7 +20,7 @@ describe('add', function () {
 
   it('updates package.json with contributors details', function (done) {
     packageFixture.setup('basic')
-    new AddCommand().call('username', validAddress, function () {
+    addCommand('username', validAddress, function () {
       expect(packageFixture.read().sustain.contributors['username']).to.deep.equal({
         'address': validAddress,
         'weight': 1
@@ -31,7 +31,7 @@ describe('add', function () {
 
   it('updates an existing user', function (done) {
     packageFixture.setup('weights')
-    new AddCommand().call('username', '1JseKCgywLToABagTu85hZfSGLXQ1pa568', function () {
+    addCommand('username', '1JseKCgywLToABagTu85hZfSGLXQ1pa568', function () {
       expect(packageFixture.read().sustain.contributors['username']).to.deep.equal({
         'address': '1JseKCgywLToABagTu85hZfSGLXQ1pa568',
         'weight': 11
@@ -39,5 +39,4 @@ describe('add', function () {
       done()
     })
   })
-
 })
