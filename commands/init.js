@@ -2,30 +2,21 @@ var addressRegex = require('bitcoin-regex')({ exact: true })
 var extend = require('xtend')
 var packageFs = require('../lib/package-fs')
 
-var InitCommand = function () {
-}
+module.exports = function (address, cb) {
+  if (checkError.apply(this, arguments)) {return}
 
-InitCommand.prototype = {
-  call: function (address, cb) {
-    if (checkError.apply(this, arguments)) {return}
+  var cwd = process.cwd()
 
-    var cwd = process.cwd()
+  packageFs.read(cwd, function (err, json) {
+    if (packageFs.checkError(err, cb)) { return }
 
-    // read existing package.json
-    packageFs.read(cwd, function (err, json) {
-      if (packageFs.checkError(err, cb)) { return }
-
-      // write address to sustain
-      json.sustain = extend(json.sustain || {}, {
-        address: address
-      })
-
-      packageFs.write(cwd, json, cb)
+    json.sustain = extend(json.sustain || {}, {
+      address: address
     })
-  }
-}
 
-module.exports = InitCommand
+    packageFs.write(cwd, json, cb)
+  })
+}
 
 function checkError (address, cb) {
   cb = arguments[arguments.length - 1]

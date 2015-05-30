@@ -5,8 +5,8 @@ var CommandTester = require('../lib/command-tester')
 var validAddress = require('../fixtures/test-address')
 var packageFixture = require('../lib/package-fixture-manager')
 
-var InitCommand = require('../../commands/init')
-var sharedTester = new CommandTester(new InitCommand(), [validAddress])
+var initCommand = require('../../commands/init')
+var sharedTester = new CommandTester(initCommand, [validAddress])
 
 process.chdir(__dirname + '/..')
 
@@ -18,14 +18,14 @@ describe('init', function () {
   sharedTester.handlesInvalidArgs([])
 
   it('errors when bitcoin address is invalid', function (done) {
-    new InitCommand().call('asdf', function (err) {
+    initCommand('asdf', function (err) {
       expect(err.message).to.equal('Given address is invalid.')
       done()
     })
   })
 
   it('updates package.json with valid address', function (done) {
-    new InitCommand().call(validAddress, function () {
+    initCommand(validAddress, function () {
       expect(packageFixture.read().sustain).to.deep.equal({
         address: validAddress // random test address
       })
