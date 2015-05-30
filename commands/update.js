@@ -1,29 +1,21 @@
 var packageFs = require('../lib/package-fs')
 var readDependencies = require('../lib/read-dependencies')
-var UpdateCommand = function () { }
 
-UpdateCommand.prototype = {
-  call: function (cb) {
-    if (checkError.apply(this, arguments)) { return }
+module.exports = function (cb) {
+  if (checkError.apply(this, arguments)) { return }
 
-    var cwd = process.cwd()
+  packageFs.read('.', function (err, json) {
+    if (packageFs.checkError(err, cb)) { return }
+    if (packageFs.noSustainData(json, cb)) { return }
 
-    // read existing package.json
-    packageFs.read.apply(this, ['.', function (err, json) {
-      if (packageFs.checkError(err, cb)) { return }
-      if (packageFs.noSustainData(json, cb)) { return }
-
-      dependencies(function (err, dependencies) {
-        if (err) { return cb(err)}
-        json.sustain.dependencies = json.sustain.dependencies || {}
-        json = buildDependencyJSON(json, dependencies)
-        packageFs.write(cwd, json, cb)
-      })
-    }])
-  }
+    buildDependencies(function (err, dependencies) {
+      if (err) { return cb(err)}
+      json.sustain.dependencies = json.sustain.dependencies || {}
+      json = buildDependencyJSON(json, dependencies)
+      packageFs.write(process.cwd(), json, cb)
+    })
+  })
 }
-
-module.exports = UpdateCommand
 
 function checkError (cb) {
   cb = arguments[arguments.length - 1]
@@ -37,16 +29,17 @@ function checkError (cb) {
 function buildDependencyJSON (json, dependencies) {
   dependencies.forEach(function (dep) {
     var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
-    if (parts[0] !== '') {
-      json.sustain.dependencies[parts[0]] = {
+    var packageName = parts[0]
+    if (packageName !== '') {
+      json.sustain.dependencies[packageName] = {
         version: parts[1],
-        weight: weightFor(parts[0], json.sustain.dependencies)
+        weight: weightFor(packageName, json.sustain.dependencies)
       }
     }
   })
   return json
 }
-function dependencies (cb) {
+function buildDependencies (cb) {
   readDependencies(function (err, contents) {
     if (err) {return cb(err)}
     var deps = contents.split('\n')
