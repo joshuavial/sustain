@@ -25,15 +25,20 @@ describe('PayeeCalculator', function () {
   it('includes dependecies which have a sustain address', function () {
     expect(this.calculator.payees[1].name).to.equal('packageWithSustain')
   })
-  it('does not include dependencies without a sustain address', function () {
-    expect(this.calculator.payees.length).to.equal(2)
-  })
   it('includes a payment address for each payee', function () {
     expect(this.calculator.payees[0]).to.have.property('address')
     expect(this.calculator.payees[1]).to.have.property('address')
   })
-  it('converts weights to a %', function () {
+  it('calculates the proportion of payments for each payee', function () {
     expect(this.calculator.payees[0].proportion).to.equal(0.6)
     expect(this.calculator.payees[1].proportion).to.equal(0.4)
+  })
+  describe('dependencies without a sustain address', function () {
+    it('are not included in payees', function () {
+      expect(this.calculator.payees.length).to.equal(2)
+    })
+    it('are stored in incompleteDependencies array', function () {
+      expect(this.calculator.incompleteDependencies[0].name).to.equal('bitcoin-regex')
+    })
   })
 })
