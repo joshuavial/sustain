@@ -1,7 +1,8 @@
 {
   "name": "sustain",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "distributed payment system for open source development",
+  "sustain" : "https://raw.githubusercontent.com/joshuavial/sustain/master/sustain.json",
   "main": "index.js",
   "scripts": {
     "test": "standard && mocha $(ls $(pwd)/test/**/*-test.js)",
@@ -46,60 +47,5 @@
     "commist": "^1.0.0",
     "sorted-object": "^1.0.0",
     "xtend": "^4.0.0"
-  },
-  "sustain": {
-    "address": "1EQkFCBMCUUSBTz4k89a3VLBcpD34uVAGZ",
-    "contributors": {
-      "joshuavial": {
-        "address": "126inLnTwpnAj8FzzqLw2xBy1bpinSU3NT",
-        "weight": 100
-      },
-      "ahdinosaur": {
-        "address": "19YbBDwZ9PjxVN2FskosfABqigHF9Si5Bz",
-        "weight": 10
-      }
-    },
-    "dependencies": {
-      "bitcoin-regex": {
-        "version": "1.1.0",
-        "weight": 1
-      },
-      "chai": {
-        "version": "2.3.0",
-        "weight": 1
-      },
-      "commist": {
-        "version": "1.0.0",
-        "weight": 1
-      },
-      "mocha": {
-        "version": "2.2.4",
-        "weight": 1
-      },
-      "proxyquire": {
-        "version": "1.5.0",
-        "weight": 1
-      },
-      "sinon": {
-        "version": "1.14.1",
-        "weight": 1
-      },
-      "sinon-chai": {
-        "version": "2.7.0",
-        "weight": 1
-      },
-      "sorted-object": {
-        "version": "1.0.0",
-        "weight": 1
-      },
-      "standard": {
-        "version": "3.3.0",
-        "weight": 1
-      },
-      "xtend": {
-        "version": "4.0.0",
-        "weight": 1
-      }
-    }
   }
 }

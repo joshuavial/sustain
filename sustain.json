@@ -1,0 +1,55 @@
+{
+  "address": "1EQkFCBMCUUSBTz4k89a3VLBcpD34uVAGZ",
+  "contributors": {
+    "joshuavial": {
+      "address": "126inLnTwpnAj8FzzqLw2xBy1bpinSU3NT",
+      "weight": 100
+    },
+    "ahdinosaur": {
+      "address": "19YbBDwZ9PjxVN2FskosfABqigHF9Si5Bz",
+      "weight": 1
+    }
+  },
+  "dependencies": {
+    "bitcoin-regex": {
+      "version": "1.1.0",
+      "weight": 1
+    },
+    "chai": {
+      "version": "2.3.0",
+      "weight": 1
+    },
+    "commist": {
+      "version": "1.0.0",
+      "weight": 1
+    },
+    "mocha": {
+      "version": "2.2.4",
+      "weight": 1
+    },
+    "proxyquire": {
+      "version": "1.5.0",
+      "weight": 1
+    },
+    "sinon": {
+      "version": "1.14.1",
+      "weight": 1
+    },
+    "sinon-chai": {
+      "version": "2.7.0",
+      "weight": 1
+    },
+    "sorted-object": {
+      "version": "1.0.0",
+      "weight": 1
+    },
+    "standard": {
+      "version": "3.3.0",
+      "weight": 1
+    },
+    "xtend": {
+      "version": "4.0.0",
+      "weight": 1
+    }
+  }
+}
