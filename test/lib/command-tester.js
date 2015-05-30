@@ -1,5 +1,5 @@
 var expect = require('chai').expect
-var packageFixture = require('./package-fixture-manager')
+var sustainFixture = require('./sustain-fixture-manager')
 
 /* global it */
 var CommandTester = function (command, validArgs, invalidArgs) {
@@ -10,7 +10,7 @@ var CommandTester = function (command, validArgs, invalidArgs) {
 CommandTester.prototype.handlesInvalidArgs = function (invalidArgs) {
   var tester = this
   it('errors when arguments are invalid', function (done) {
-    packageFixture.setup('basic')
+    sustainFixture.setup('basic')
     var fullInvalidArgs = invalidArgs.concat([function (err) {
       expect(err.message).to.equal('Not enough arguments.')
       done()
@@ -18,23 +18,12 @@ CommandTester.prototype.handlesInvalidArgs = function (invalidArgs) {
     tester.command.apply(this, fullInvalidArgs)
   })
 }
-CommandTester.prototype.requiresPackageFile = function () {
+CommandTester.prototype.requiresSustainFile = function () {
   var tester = this
-  it('errors if there is no package.json', function (done) {
-    packageFixture.cleanup()
+  it('errors if there is no sustain.json', function (done) {
+    sustainFixture.cleanup()
     var validArgs = tester.validArgs.concat([function (err) {
-      expect(err.message).to.equal('No package.json in current directory.')
-      done()
-    }])
-    tester.command.apply(this, validArgs)
-  })
-}
-CommandTester.prototype.requireSustainField = function () {
-  var tester = this
-  it('displays error if no sustain field in package.json', function (done) {
-    packageFixture.setup('empty')
-    var validArgs = tester.validArgs.concat([function (err) {
-      expect(err.message).to.equal('No sustain data in package.json.')
+      expect(err.message).to.equal('No sustain.json in current directory.')
       done()
     }])
     tester.command.apply(this, validArgs)

@@ -1,20 +1,19 @@
 var addressRegex = require('bitcoin-regex')({ exact: true })
-var packageFs = require('../lib/package-fs')
+var sustainFs = require('../lib/sustain-fs')
 
 module.exports = function (username, address, cb) {
   if (checkError.apply(this, arguments)) { return }
 
   var cwd = process.cwd()
 
-  // read existing package.json
-  packageFs.read(cwd, function (err, json) {
-    if (packageFs.checkError(err, cb)) { return }
-    if (packageFs.noSustainData(json, cb)) { return }
+  // read existing sustain.json
+  sustainFs.read(cwd, function (err, json) {
+    if (sustainFs.checkError(err, cb)) { return }
 
     initContributors(json)
     addContributor(json, username, address)
 
-    packageFs.write(cwd, json, cb)
+    sustainFs.write(cwd, json, cb)
   })
 }
 
@@ -32,15 +31,15 @@ function checkError (username, address, cb) {
 }
 
 function initContributors (json) {
-  json.sustain.contributors = json.sustain.contributors || {}
+  json.contributors = json.contributors || {}
 }
 
 function addContributor (json, username, address) {
-  if (!json.sustain.contributors[username]) {
-    json.sustain.contributors[username] = {}
+  if (!json.contributors[username]) {
+    json.contributors[username] = {}
   }
-  json.sustain.contributors[username]['address'] = address
-  if (!json.sustain.contributors[username].weight) {
-    json.sustain.contributors[username].weight = 1
+  json.contributors[username]['address'] = address
+  if (!json.contributors[username].weight) {
+    json.contributors[username].weight = 1
   }
 }

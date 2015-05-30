@@ -3,7 +3,7 @@ var expect = require('chai').expect
 
 var CommandTester = require('../lib/command-tester')
 var validAddress = require('../fixtures/test-address')
-var packageFixture = require('../lib/package-fixture-manager')
+var sustainFixture = require('../lib/sustain-fixture-manager')
 
 var initCommand = require('../../commands/init')
 var sharedTester = new CommandTester(initCommand, [validAddress])
@@ -11,10 +11,10 @@ var sharedTester = new CommandTester(initCommand, [validAddress])
 process.chdir(__dirname + '/..')
 
 describe('init', function () {
-  beforeEach(function () { packageFixture.setup('empty')})
-  afterEach(function () { packageFixture.cleanup() })
+  beforeEach(function () { sustainFixture.setup('empty')})
+  afterEach(function () { sustainFixture.cleanup() })
 
-  sharedTester.requiresPackageFile()
+  sharedTester.requiresSustainFile()
   sharedTester.handlesInvalidArgs([])
 
   it('errors when bitcoin address is invalid', function (done) {
@@ -24,9 +24,9 @@ describe('init', function () {
     })
   })
 
-  it('updates package.json with valid address', function (done) {
+  it('updates sustain.json with valid address', function (done) {
     initCommand(validAddress, function () {
-      expect(packageFixture.read().sustain).to.deep.equal({
+      expect(sustainFixture.read()).to.deep.equal({
         address: validAddress // random test address
       })
       done()

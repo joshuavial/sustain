@@ -1,20 +1,20 @@
 var addressRegex = require('bitcoin-regex')({ exact: true })
 var extend = require('xtend')
-var packageFs = require('../lib/package-fs')
+var sustainFs = require('../lib/sustain-fs')
 
 module.exports = function (address, cb) {
   if (checkError.apply(this, arguments)) {return}
 
   var cwd = process.cwd()
 
-  packageFs.read(cwd, function (err, json) {
-    if (packageFs.checkError(err, cb)) { return }
+  sustainFs.read(cwd, function (err, json) {
+    if (sustainFs.checkError(err, cb)) { return }
 
-    json.sustain = extend(json.sustain || {}, {
+    json = extend(json || {}, {
       address: address
     })
 
-    packageFs.write(cwd, json, cb)
+    sustainFs.write(cwd, json, cb)
   })
 }
 

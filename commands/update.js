@@ -1,18 +1,17 @@
-var packageFs = require('../lib/package-fs')
+var sustainFs = require('../lib/sustain-fs')
 var readDependencies = require('../lib/read-dependencies')
 
 module.exports = function (cb) {
   if (checkError.apply(this, arguments)) { return }
 
-  packageFs.read('.', function (err, json) {
-    if (packageFs.checkError(err, cb)) { return }
-    if (packageFs.noSustainData(json, cb)) { return }
+  sustainFs.read('.', function (err, json) {
+    if (sustainFs.checkError(err, cb)) { return }
 
     buildDependencies(function (err, dependencies) {
       if (err) { return cb(err)}
-      json.sustain.dependencies = json.sustain.dependencies || {}
+      json.dependencies = json.dependencies || {}
       json = buildDependencyJSON(json, dependencies)
-      packageFs.write(process.cwd(), json, cb)
+      sustainFs.write(process.cwd(), json, cb)
     })
   })
 }
@@ -31,9 +30,9 @@ function buildDependencyJSON (json, dependencies) {
     var parts = dep.replace('├── ', '').replace('└── ', '').split('@')
     var packageName = parts[0]
     if (packageName !== '') {
-      json.sustain.dependencies[packageName] = {
+      json.dependencies[packageName] = {
         version: parts[1],
-        weight: weightFor(packageName, json.sustain.dependencies)
+        weight: weightFor(packageName, json.dependencies)
       }
     }
   })
