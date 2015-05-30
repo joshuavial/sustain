@@ -3,13 +3,17 @@
   "contributors": {
     "username": {
       "address": "1JseKCgywLToABagTu85hZfSGLXQ1pa567",
-      "weight": 11
+      "weight": 12
     }
   },
   "dependencies": {
     "bitcoin-regex": {
       "version": "1.0.0",
       "weight": 12
+    },
+    "packageWithSustain": {
+      "version": "2.0.0",
+      "weight": 8
     }
   }
 }

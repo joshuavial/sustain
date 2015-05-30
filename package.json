@@ -2,7 +2,7 @@
   "name": "sustain",
   "version": "2.0.0",
   "description": "distributed payment system for open source development",
-  "sustain" : "https://raw.githubusercontent.com/joshuavial/sustain/master/sustain.json",
+  "sustain": "https://raw.githubusercontent.com/joshuavial/sustain/master/sustain.json",
   "main": "index.js",
   "scripts": {
     "test": "standard && mocha $(ls $(pwd)/test/**/*-test.js)",
@@ -40,7 +40,8 @@
     "proxyquire": "^1.5.0",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
-    "standard": "^3.0.0"
+    "standard": "^3.0.0",
+    "wrench": "^1.5.8"
   },
   "dependencies": {
     "bitcoin-regex": "^1.1.0",

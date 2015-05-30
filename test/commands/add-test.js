@@ -33,7 +33,7 @@ describe('add', function () {
     addCommand('username', '1JseKCgywLToABagTu85hZfSGLXQ1pa568', function () {
       expect(sustainFixture.read().contributors['username']).to.deep.equal({
         'address': '1JseKCgywLToABagTu85hZfSGLXQ1pa568',
-        'weight': 11
+        'weight': 12
       })
       done()
     })
