@@ -1,25 +1,25 @@
 var sustainFs = require('../lib/sustain-fs')
 var readDependencies = require('../lib/read-dependencies')
 
-module.exports = function (cb) {
+module.exports = function (done) {
   if (checkError.apply(this, arguments)) { return }
 
   sustainFs.read('.', function (err, json) {
-    if (sustainFs.checkError(err, cb)) { return }
+    if (sustainFs.checkError(err, done)) { return }
 
     buildDependencies(function (err, dependencies) {
-      if (err) { return cb(err)}
+      if (err) { return done(err)}
       json.dependencies = json.dependencies || {}
       json = buildDependencyJSON(json, dependencies)
-      sustainFs.write(process.cwd(), json, cb)
+      sustainFs.write(process.cwd(), json, done)
     })
   })
 }
 
-function checkError (cb) {
-  cb = arguments[arguments.length - 1]
+function checkError (done) {
+  done = arguments[arguments.length - 1]
   if (arguments.length !== 1) {
-    cb(new Error('Does not take arguments.'))
+    done(new Error('Does not take arguments.'))
     return true
   }
   return false
@@ -38,12 +38,12 @@ function buildDependencyJSON (json, dependencies) {
   })
   return json
 }
-function buildDependencies (cb) {
+function buildDependencies (done) {
   readDependencies(function (err, contents) {
-    if (err) {return cb(err)}
+    if (err) {return done(err)}
     var deps = contents.split('\n')
     deps.shift()
-    cb(null, deps)
+    done(null, deps)
   })
 }
 

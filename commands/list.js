@@ -1,13 +1,13 @@
 var sustainFs = require('../lib/sustain-fs')
 var PayeeCalculator = require('../lib/payeeCalculator')
 
-module.exports = function (cb) {
+module.exports = function (done) {
   var cwd = process.cwd()
   sustainFs.read(cwd, function (err, json) {
-    if (sustainFs.checkError(err, cb)) { return }
+    if (sustainFs.checkError(err, done)) { return }
 
     var calculator = new PayeeCalculator(json)
 
-    cb(null, {payees: calculator.payees})
+    done(null, {payees: calculator.payees})
   })
 }
