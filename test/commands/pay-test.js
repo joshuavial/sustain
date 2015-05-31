@@ -1,6 +1,6 @@
 /* global describe, afterEach */
-var CommandTester = require('../lib/command-tester')
-var sustainFixture = require('../lib/sustain-fixture-manager')
+var CommandTester = require('../helpers/command-tester')
+var sustainFixture = require('../helpers/sustain-fixture-manager')
 
 var payCommand = require('../../commands/pay')
 var commandTester = new CommandTester(payCommand, [])

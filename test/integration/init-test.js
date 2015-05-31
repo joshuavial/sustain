@@ -2,7 +2,7 @@
 var exec = require('child_process').exec
 var expect = require('chai').expect
 var validAddress = require('../fixtures/test-address')
-var sustainFixture = require('../lib/sustain-fixture-manager')
+var sustainFixture = require('../helpers/sustain-fixture-manager')
 
 process.chdir(__dirname + '/..')
 

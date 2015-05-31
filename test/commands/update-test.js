@@ -2,9 +2,9 @@
 var expect = require('chai').expect
 var proxyquire = require('proxyquire')
 
-var CommandTester = require('../lib/command-tester')
-var sustainFixture = require('../lib/sustain-fixture-manager')
-var readDependenciesMock = require('../lib/read-dependencies-mock')
+var CommandTester = require('../helpers/command-tester')
+var sustainFixture = require('../helpers/sustain-fixture-manager')
+var readDependenciesMock = require('../helpers/read-dependencies-mock')
 
 var updateCommand = proxyquire('../../commands/update', {
   '../lib/read-dependencies': readDependenciesMock

@@ -1,9 +1,9 @@
 /* global describe, it, afterEach */
 var expect = require('chai').expect
 
-var CommandTester = require('../lib/command-tester')
+var CommandTester = require('../helpers/command-tester')
 var validAddress = require('../fixtures/test-address')
-var sustainFixture = require('../lib/sustain-fixture-manager')
+var sustainFixture = require('../helpers/sustain-fixture-manager')
 
 var addCommand = require('../../commands/add')
 var commandTester = new CommandTester(addCommand, ['username', validAddress])
