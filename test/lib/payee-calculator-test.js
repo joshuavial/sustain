@@ -1,7 +1,7 @@
 /* global describe, it, beforeEach, afterEach */
 var expect = require('chai').expect
 var sustainFixture = require('../lib/sustain-fixture-manager')
-var PayeeCalculator = require('../../lib/payeeCalculator')
+var PayeeCalculator = require('../../lib/payee-calculator')
 
 process.chdir(__dirname + '/..')
 

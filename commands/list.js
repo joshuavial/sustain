@@ -1,5 +1,5 @@
 var sustainFs = require('../lib/sustain-fs')
-var PayeeCalculator = require('../lib/payeeCalculator')
+var PayeeCalculator = require('../lib/payee-calculator')
 
 module.exports = function (done) {
   var cwd = process.cwd()
