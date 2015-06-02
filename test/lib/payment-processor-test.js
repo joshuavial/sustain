@@ -61,24 +61,38 @@ describe('PaymentProcessor', function () {
     sinon.stub(transaction, 'to').returns(transaction)
     sinon.stub(transaction, 'change').returns(transaction)
     sinon.stub(transaction, 'sign').returns(transaction)
+    var payees = []
 
     it('unless the balance is 0', function (done) {
       insight.getUnspentUtxos.restore()
       sinon.stub(insight, 'getUnspentUtxos').callsArgWith(1, null, [])
 
-      processor.distribute(function () {
+      processor.distribute(payees, function () {
+        expect(bitcore.Transaction).to.not.have.been.called
         done()
       })
-      expect(bitcore.Transaction).to.not.have.been.called
     })
 
     it('with utxos for the address', function (done) {
-      processor.distribute(function () {
+      processor.distribute(payees, function () {
+        expect(transaction.from).calledWith(utxos)
         done()
       })
-      expect(transaction.from).calledWith(utxos)
     })
-    it('with proportional amounts for each payee')
+    it('with proportional amounts for each payee', function (done) {
+      var a1 = sinon.createStubInstance(bitcore.Address)
+      var a2 = sinon.createStubInstance(bitcore.Address)
+      var stub = sinon.stub(bitcore, 'Address')
+      stub.withArgs('123').returns(a1)
+      stub.withArgs('456').returns(a2)
+
+      payees = [ {address: '123', proportion: 0.2}, {address: '456', proportion: 0.8}]
+      processor.distribute(payees, function () {
+        expect(transaction.to).to.have.been.calledWith(a1, 1700000)
+        expect(transaction.to).to.have.been.calledWith(a2, 6800000)
+        done()
+      })
+    })
     it('signed with the key in SUSTAIN_WIF_KEY')
   })
 })
