@@ -126,7 +126,7 @@ describe('PaymentProcessor', function () {
     it("returns error if SUSTAIN_WIF_KEY doesn't exist", function (done) {
       delete process.env.SUSTAIN_WIF_KEY
       processor.distribute(payees, function (err) {
-        expect(err).to.equal('No SUSTAIN_WIF_KEY found in environment')
+        expect(err.message).to.equal('No SUSTAIN_WIF_KEY found in environment')
         done()
       })
     })
