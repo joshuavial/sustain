@@ -117,6 +117,15 @@ describe('PaymentProcessor', function () {
         done()
       })
     })
+
+    it('ignores payees who would receive no funds', function (done) {
+      var extended_payees = payees.concat([{address: '012', weight: 0}])
+      processor.distribute(extended_payees, function () {
+        expect(bitcore.Address.callCount).to.equal(3)
+        done()
+      })
+    })
+
     it('signed with the key in SUSTAIN_WIF_KEY', function (done) {
       processor.distribute(payees, function () {
         expect(transaction.sign).to.have.been.calledWith('test_key')
