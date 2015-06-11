@@ -40,6 +40,17 @@ describe('PaymentProcessor', function () {
         done()
       })
     })
+
+    it('correctly sets the balance for one utxo', function (done) {
+      insight.getUnspentUtxos.restore()
+      sinon.stub(insight, 'getUnspentUtxos').callsArgWith(1, null, [{satoshis: 1000000}])
+
+      processor.loadBalance(function () {
+        expect(processor.balance).to.equal(0.01)
+        done()
+      })
+    })
+
     it('converts balance to BTC', function (done) {
       processor.loadBalance(function () {
         expect(insight.getUnspentUtxos).to.have.been.called
