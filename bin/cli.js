@@ -21,7 +21,9 @@ function usage () {
     '',
     '  Commands:',
     '  - add [username] [bitcoin address]',
+    '  - distribute',
     '  - init [bitcoin address]',
+    '  - list',
     '  - update '
   ].join('\n')
 }

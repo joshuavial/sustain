@@ -2,6 +2,6 @@ module.exports = {
   add: require('./add'),
   init: require('./init'),
   list: require('./list'),
-  pay: require('./pay'),
+  distribute: require('./distribute'),
   update: require('./update')
 }
