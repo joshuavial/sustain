@@ -1,6 +1,6 @@
 {
   "name": "sustain",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "distributed payment system for open source development",
   "sustain": "https://raw.githubusercontent.com/joshuavial/sustain/master/sustain.json",
   "main": "index.js",
@@ -40,11 +40,12 @@
     "proxyquire": "^1.5.0",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
-    "standard": "^3.0.0",
+    "standard": "^3.13.2",
     "wrench": "^1.5.8"
   },
   "dependencies": {
     "bitcoin-regex": "^1.1.0",
+    "bitcore": "^0.12.8",
     "bitcore-explorers": "^0.11.0",
     "commist": "^1.0.0",
     "sorted-object": "^1.0.0",
