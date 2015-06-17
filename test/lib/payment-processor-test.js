@@ -9,6 +9,7 @@ var bitcore = require('bitcore')
 var explorers = require('bitcore-explorers')
 var insight = new explorers.Insight()
 sinon.stub(explorers, 'Insight').returns(insight)
+sinon.stub(insight, 'broadcast').callsArgWith(1, null, '123456789')
 
 var PaymentProcessor = proxyquire('../../lib/payment-processor', {
   'bitcore-explorers': explorers
@@ -44,7 +45,6 @@ describe('PaymentProcessor', function () {
     it('correctly sets the balance for one utxo', function (done) {
       insight.getUnspentUtxos.restore()
       sinon.stub(insight, 'getUnspentUtxos').callsArgWith(1, null, [{satoshis: 1000000}])
-
       processor.loadBalance(function () {
         expect(processor.balance).to.equal(0.01)
         done()
@@ -106,17 +106,20 @@ describe('PaymentProcessor', function () {
       })
     })
 
-    it('passes transaction to callback', function (done) {
-      processor.distribute([], function (e, returnedTransaction) {
-        expect(returnedTransaction).to.equal(transaction)
+    it('passes transaction id to callback', function (done) {
+      processor.distribute([], function (e, transactionId) {
+        expect(transactionId).to.equal('123456789')
         done()
       })
     })
 
     it('with proportional amounts for each payee', function (done) {
+      var amt1 = bitcore.Unit.fromBTC(0.017 - processor.fee * 0.2).satoshis
+      var amt2 = bitcore.Unit.fromBTC(0.068 - processor.fee * 0.8).satoshis
+
       processor.distribute(payees, function () {
-        expect(transaction.to).to.have.been.calledWith(a1, 1700000)
-        expect(transaction.to).to.have.been.calledWith(a2, 6800000)
+        expect(transaction.to).to.have.been.calledWith(a1, amt1)
+        expect(transaction.to).to.have.been.calledWith(a2, amt2)
         done()
       })
     })
@@ -149,6 +152,13 @@ describe('PaymentProcessor', function () {
         expect(err.message).to.equal('No SUSTAIN_WIF_KEY found in environment')
         done()
       })
+    })
+    it('broadcasts the transaction', function (done) {
+      processor.distribute(payees, function (e, transactionId) {
+        expect(insight.broadcast).to.have.been.called
+        done()
+      })
+
     })
   })
 })
