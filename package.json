@@ -1,6 +1,6 @@
 {
   "name": "sustain",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "distributed payment system for open source development",
   "sustain": "https://raw.githubusercontent.com/joshuavial/sustain/master/sustain.json",
   "main": "index.js",
