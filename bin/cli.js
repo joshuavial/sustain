@@ -21,6 +21,7 @@ function usage () {
     '',
     '  Commands:',
     '  - add [username] [bitcoin address]',
+    '  - balance',
     '  - distribute',
     '  - init [bitcoin address]',
     '  - list',
