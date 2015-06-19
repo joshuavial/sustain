@@ -40,7 +40,7 @@ Add all your dependencies to sustain.json with a weight of 1
 List all the accounts which will have funds distributed to them along with the percentage of funds they will receive. If a dependency does not have a sustain.json file then it's weight will be set to 0.
 
 ### sustain balance
-Show the amount of bitcoins int he project account
+Show the amount of bitcoins in the project account
 
 ### sustain distribute
 Distribute all funds in project account to contributors.
